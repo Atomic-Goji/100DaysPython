@@ -1,0 +1,230 @@
+<HTML>
+<HEAD>
+    <TITLE>CALCULATOR</TITLE> 
+    <META charset="UTF-8">
+        <STYLE>
+        .background {
+                    background-color: #8c233f;
+                } 
+        .calbody {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 60%;
+            width: 20%;
+            background-color: #D5A021;
+        }
+
+        .screen {
+            background-color: #12bed9;
+            margin-top: 15px;
+            width: 90%;
+            height: 15%;
+        }
+
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .button{
+            background-color: black;
+            height: 4vw;
+            border-radius: 50%;
+            width: 4vw;
+        }
+
+        .number{
+            color:white;
+            font-size: 2vw;
+            font-weight: 700;
+        }
+        .buttonpad{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        </STYLE>
+        
+        <BODY class="container background">
+
+                <DIV class="calbody">
+                    <DIV class="screen" id="screenOutput"></DIV>
+                    <DIV class="buttonpad">
+                        <DIV class="buttonrow">
+                            <BUTTON class="button" onclick=numberInput(1)>
+                                 <DIV class="number">
+                                    1
+                                 </DIV>
+                            </BUTTON>
+                            <BUTTON class="button" onclick='numberInput(2)'>
+                                 <DIV class="number">
+                                    2
+                                 </DIV>
+                            </BUTTON>
+                            <BUTTON class="button" onclick=numberInput(3)>
+                                 <DIV class="number">
+                                    3
+                                 </DIV>
+                            </BUTTON>
+                            <BUTTON class="button" onclick='operationInput("+")'>
+                                 <DIV class="number">
+                                    +
+                                 </DIV>
+                            </BUTTON>
+                            </DIV>
+
+
+                        <DIV class="buttonrow">
+                            <BUTTON class="button" onclick=numberInput(4)>
+                                 <DIV class="number">
+                                    4
+                                 </DIV>
+                            </BUTTON>
+                            <BUTTON class="button" onclick=numberInput(5)>
+                                 <DIV class="number">
+                                    5
+                                 </DIV>
+                            </BUTTON>
+                            <BUTTON class="button"onclick=numberInput(6)>
+                                 <DIV class="number">
+                                    6
+                                 </DIV>
+                            </BUTTON>
+                            <BUTTON class="button" onclick='operationInput("-")'>
+                                 <DIV class="number">
+                                    -
+                                 </DIV>
+                            </BUTTON>
+                            </DIV>
+
+                            <DIV class="buttonrow">
+                            <BUTTON class="button" onclick=numberInput(7)>
+                                 <DIV class="number">
+                                    7
+                                 </DIV>
+                            </BUTTON>
+                            <BUTTON class="button" onclick=numberInput(8)>
+                                 <DIV class="number">
+                                    8
+                                 </DIV>
+                            </BUTTON>
+                            <BUTTON class="button"onclick=numberInput(9)>
+                                 <DIV class="number">
+                                    9
+                                 </DIV>
+                            </BUTTON>
+                            <BUTTON class="button" onclick='operationInput("*")'>
+                                 <DIV class="number">
+                                    x
+                                 </DIV>
+                            </BUTTON>
+                            </DIV>
+                            
+                            <DIV class="buttonrow">
+                            <BUTTON class="button" onclick=numberInput(1)>
+                                 <DIV class="number">
+                                    .
+                                 </DIV>
+                            </BUTTON>
+                            <BUTTON class="button" onclick=numberInput(0)>
+                                 <DIV class="number">
+                                    0
+                                 </DIV>
+                            </BUTTON>
+                            <BUTTON class="button"onclick=clsInput(6)>
+                                 <DIV class="number">
+                                    cls
+                                 </DIV>
+                            </BUTTON>
+                            <BUTTON class="button" onclick=operationResult()>
+                                 <DIV class="number">
+                                    =
+                                 </DIV>
+                            </BUTTON>
+                            </DIV>
+                            
+    
+                    </DIV>
+                </DIV>
+        </BODY>
+        <SCRIPT>
+            let number1 = null;
+            let number2 = null;
+            let operation = null;
+            let output = undefined;
+            let firsttime = true;
+
+        function printOnScreen(res){
+            document.getElementById("screenOutput").innerHTML = res;
+
+        }
+        function numberInput(a){
+            if(!firsttime)
+            {
+            number1 = null;
+            firsttime= true;
+            }
+
+            if (operation != undefined && operation != null){
+                if (number2== undefined || number2 == null){
+                    number2 = a;
+                    printOnScreen(number1 + " " + operation + " " + number2);
+                } else {
+                    number2 = number2*10 + a;
+                    printOnScreen(number1 + " " + operation + " " + number2);
+                }
+            } else{
+                if (number1== undefined || number1 == null){
+                    number1 = a;
+                    printOnScreen(number1);
+                } else {
+                    number1 = number1*10 + a;
+                    
+                    printOnScreen(number1);
+                }
+            }
+            console.log(number1, operation, number2);
+        }
+
+        function operationInput(b){
+            if (number1 != null){
+            operation = b;
+            printOnScreen(number1+ " " + operation );
+            }
+        }
+
+        function operationResult(){
+            if(operation == null || number2 == null || number1== null)
+        {
+            return;
+        }
+            switch(operation)
+            {
+                case "+":
+                {
+                    output=number1 + number2;
+                    break;
+                }
+                 case "-":
+                {
+                    output=number1 - number2;
+                    break;
+                }
+                 case "*":
+                {
+                    output=number1 * number2;
+                    break;
+                }
+            }
+            printOnScreen(output);
+            firsttime = false;
+
+            number1 = output;
+            number2 = null;
+            operation= null;
+        }
+
+        </SCRIPT>
+</HTML>
