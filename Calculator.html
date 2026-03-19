@@ -16,10 +16,15 @@
         }
 
         .screen {
-            background-color: #12bed9;
+            background-color: #000000;
             margin-top: 15px;
             width: 90%;
             height: 15%;
+            color: white;
+            font-size: 3vw;
+            font-weight: 800;
+            text-align: right;
+
         }
 
         .container{
@@ -133,7 +138,7 @@
                                     0
                                  </DIV>
                             </BUTTON>
-                            <BUTTON class="button"onclick=clsInput(6)>
+                            <BUTTON class="button"onclick=clsInput()>
                                  <DIV class="number">
                                     cls
                                  </DIV>
@@ -225,6 +230,13 @@
             number2 = null;
             operation= null;
         }
+         function clsInput()
+         {
+            number1=null;
+            number2=null;
+            operation=null;
+            printOnScreen(null);
+         }
 
         </SCRIPT>
 </HTML>
